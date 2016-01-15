@@ -1,7 +1,10 @@
 package bz.pock.restcontroller.dto;
 
 import bz.pock.model.Sensor;
+import org.jscience.geography.coordinates.LatLong;
 
+import javax.measure.unit.Unit;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -90,7 +93,14 @@ public class SensorDTO {
      * @return capteur correspondant
      */
     public static Sensor from(SensorDTO dto) {
-        return null;
-        // return Sensor.builder().id(dto.id).date(dto.date.isEmpty() ? null : LocalDateTime.parse(dto.date, FORMATER)).value(dto.value).build();
+        return Sensor.builder().id(dto.id)
+                .name(dto.name)
+                .date(dto.date != null && !dto.date.isEmpty() ? LocalDate.parse(dto.date, FORMATER) : null)
+                .unity(Unit.valueOf(dto.unity))
+                .lowBattery(dto.lowBattery)
+                .localization(LatLong.valueOf(dto.localization.latitude, dto.localization.longitude, RADIAN))
+                .frequency(dto.frequency)
+                .datas(dto.datas.stream().map(DataDTO::from).collect(Collectors.toSet()))
+                .build();
     }
 }
