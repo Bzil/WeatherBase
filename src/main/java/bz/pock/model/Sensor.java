@@ -12,7 +12,7 @@ import java.util.Set;
 @Document
 public class Sensor implements Serializable {
     /**
-     * Id du capteur
+     * Id du capteur.
      */
     private Long id;
     /**
@@ -28,7 +28,7 @@ public class Sensor implements Serializable {
      */
     private Unit unity;
     /**
-     * Etat de la batterie, faux par défaut
+     * Etat de la batterie, faux par défaut.
      */
     private Boolean lowBattery;
     /**
@@ -44,6 +44,9 @@ public class Sensor implements Serializable {
      */
     private Set<Data> datas = new LinkedHashSet<>();
 
+    /**
+     * Private constructeur, use Builder.
+     */
     private Sensor() {
     }
 
@@ -83,6 +86,11 @@ public class Sensor implements Serializable {
         return unity;
     }
 
+    /**
+     * Getter for property 'lowBattery'.
+     *
+     * @return Value for property 'lowBattery'.
+     */
     public Boolean isLowBattery() {
         return lowBattery;
     }
@@ -126,50 +134,107 @@ public class Sensor implements Serializable {
     public static class Builder {
         private Sensor sensor;
 
+        /**
+         * Constructeur.
+         */
         private Builder() {
             sensor = new Sensor();
         }
 
+        /**
+         * Set id to sensor.
+         *
+         * @param id id to set
+         * @return builder
+         */
         public Builder id(Long id) {
             sensor.id = id;
             return this;
         }
 
+        /**
+         * Set name to sensor.
+         *
+         * @param name name to set
+         * @return builder
+         */
         public Builder name(String name) {
             sensor.name = name;
             return this;
         }
 
+        /**
+         * Set date to sensor.
+         *
+         * @param date date to set
+         * @return builder
+         */
         public Builder date(LocalDate date) {
             sensor.date = date;
             return this;
         }
 
+        /**
+         * Set unity to sensor.
+         *
+         * @param unity unity to set
+         * @return builder
+         */
         public Builder unity(Unit unity) {
             sensor.unity = unity;
             return this;
         }
 
+        /**
+         * Set lowBattery to sensor.
+         *
+         * @param lowBattery lowBattery to set
+         * @return builder
+         */
         public Builder lowBattery(Boolean lowBattery) {
             sensor.lowBattery = lowBattery;
             return this;
         }
 
+        /**
+         * Set localization to sensor.
+         *
+         * @param localization localization to set
+         * @return builder
+         */
         public Builder localization(LatLong localization) {
             sensor.localization = localization;
             return this;
         }
 
+        /**
+         * Set frequency to sensor.
+         *
+         * @param frequency frequency to set
+         * @return builder
+         */
         public Builder frequency(Long frequency) {
             sensor.frequency = frequency;
             return this;
         }
 
+        /**
+         * Set datas to sensor.
+         *
+         * @param datas datas to set
+         * @return builder
+         */
         public Builder datas(Set<Data> datas) {
             sensor.datas = datas;
             return this;
         }
 
+        /**
+         * Add datas to sensor.
+         *
+         * @param datas datas to set
+         * @return builder
+         */
         public Builder addDatas(Set<Data> datas) {
             sensor.datas.addAll(datas);
             return this;

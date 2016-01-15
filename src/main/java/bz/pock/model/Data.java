@@ -15,6 +15,9 @@ public class Data implements Serializable {
     private Optional<LocalDateTime> date = Optional.empty();
     private Double value;
 
+    /**
+     * Private constructeur, use Builder.
+     */
     private Data() {
     }
 
@@ -96,6 +99,9 @@ public class Data implements Serializable {
     public static class Builder {
         private Data data;
 
+        /**
+         * Constructeur.
+         */
         private Builder() {
             data = new Data();
         }
@@ -109,18 +115,34 @@ public class Data implements Serializable {
             return data;
         }
 
-
+        /**
+         * Set id to data.
+         *
+         * @param id id to set
+         * @return builder
+         */
         public Builder id(Long id) {
             data.id = id;
             return this;
         }
 
-
+        /**
+         * Set date to data.
+         *
+         * @param date date to set
+         * @return builder
+         */
         public Builder date(LocalDateTime date) {
             data.date = Optional.ofNullable(date);
             return this;
         }
 
+        /**
+         * Set value to data.
+         *
+         * @param value value to set
+         * @return builder
+         */
         public Builder value(Double value) {
             data.value = value;
             return this;
