@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,9 +40,9 @@ public class DataControllerImpl implements DataController {
     }
 
     @Override
-    @RequestMapping(path = "/{id}", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<DataDTO> save(@PathVariable(value = "id") DataDTO data) {
+    public ResponseEntity<DataDTO> save(@RequestBody DataDTO data) {
         Data res = dataService.save(DataDTO.from(data));
         URI uri = URI.create("/api/data/" + res.getId());
         return ResponseEntity.created(uri).body(DataDTO.to(res));
