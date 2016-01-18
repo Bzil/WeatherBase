@@ -1,9 +1,11 @@
 package bz.pock.restcontroller.dto;
 
 import bz.pock.model.Sensor;
+import bz.pock.restcontroller.validator.Date;
 import org.jscience.geography.coordinates.LatLong;
 
 import javax.measure.unit.Unit;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Set;
@@ -16,8 +18,11 @@ public class SensorDTO {
      * Classe pour représenter la possition d'un object sur terre.
      */
     static class LatLongDTO {
+        @NotNull
         public double latitude;
+        @NotNull
         public double longitude;
+        @NotNull
         public String radius; // RADIAN or DEGREE
 
         /**
@@ -35,13 +40,20 @@ public class SensorDTO {
     }
 
     private static final DateTimeFormatter FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
+    @NotNull
     public long id;
+    @NotNull
     public String name;
+    @NotNull
+    @Date
     public String date;
+    @NotNull
     public String unity;
+    @NotNull
     public boolean lowBattery;
+    @NotNull
     public LatLongDTO localization;
+    @NotNull
     public long frequency;
     public Set<DataDTO> datas;
 

@@ -7,10 +7,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-@Document
 public class Data implements Serializable {
 
-    @Id
     private Long id;
     private Optional<LocalDateTime> date = Optional.empty();
     private Double value;

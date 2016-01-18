@@ -131,6 +131,16 @@ public class Sensor implements Serializable {
         return new Builder();
     }
 
+    /**
+     * Builder.
+     *
+     * @param sensor sensor à construire
+     * @return builder
+     */
+    public static Builder builder(Sensor sensor) {
+        return new Builder(sensor);
+    }
+
     public static class Builder {
         private Sensor sensor;
 
@@ -139,6 +149,15 @@ public class Sensor implements Serializable {
          */
         private Builder() {
             sensor = new Sensor();
+        }
+
+        /**
+         * Constructeur.
+         *
+         * @param sensor sensor à construire
+         */
+        private Builder(Sensor sensor) {
+            this.sensor = sensor;
         }
 
         /**

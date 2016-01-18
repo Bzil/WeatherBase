@@ -5,6 +5,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
@@ -28,5 +29,18 @@ public class Config extends AbstractMongoConfiguration {
     @Override
     protected String getMappingBasePackage() {
         return "bz.pock.model";
+    }
+
+    /**
+     * Define message source.
+     *
+     * @return bundle
+     */
+    @Bean(name = "messageSource")
+    public ReloadableResourceBundleMessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageBundle = new ReloadableResourceBundleMessageSource();
+        messageBundle.setBasename("classpath:messages/error");
+        messageBundle.setDefaultEncoding("UTF-8");
+        return messageBundle;
     }
 }

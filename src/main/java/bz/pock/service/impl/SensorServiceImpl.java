@@ -18,4 +18,14 @@ public class SensorServiceImpl implements SensorService {
     public Optional<Sensor> getSensor(Long id) {
         return sensorDao.findById(id);
     }
+
+    @Override
+    public Optional<Sensor> getSensor(String name) {
+        return sensorDao.findByName(name);
+    }
+
+    @Override
+    public Sensor save(Sensor sensor) {
+        return sensorDao.save(sensor);
+    }
 }
