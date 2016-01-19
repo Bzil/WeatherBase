@@ -15,22 +15,16 @@ public @interface Date {
 
     /**
      * Message.
-     *
-     * @return the string
      */
     String message() default "{validation.date}";
 
     /**
      * Groups.
-     *
-     * @return the class[]
      */
     Class<?>[] groups() default {};
 
     /**
      * Payload.
-     *
-     * @return the class<? extends payload>[]
      */
     Class<? extends Payload>[] payload() default {};
 }

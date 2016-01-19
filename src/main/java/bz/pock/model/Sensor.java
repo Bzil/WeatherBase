@@ -1,19 +1,27 @@
 package bz.pock.model;
 
 import org.jscience.geography.coordinates.LatLong;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.measure.unit.Unit;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Document
+@Entity
 public class Sensor implements Serializable {
     /**
      * Id du capteur.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     /**
      * Non du capteur.
@@ -42,6 +50,7 @@ public class Sensor implements Serializable {
     /**
      * Liste des données enregistrée par le capteur.
      */
+    @OneToMany(mappedBy = "sensor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Data> datas = new LinkedHashSet<>();
 
     /**

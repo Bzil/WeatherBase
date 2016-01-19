@@ -1,11 +1,11 @@
 package bz.pock.persistence;
 
 import bz.pock.model.Sensor;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface SensorDao extends MongoRepository<Sensor, Long> {
+public interface SensorDao extends CrudRepository<Sensor, Long> {
 
     /**
      * Retourne le capteur contenu en base de donnée.

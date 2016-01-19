@@ -35,7 +35,7 @@ public interface SensorController {
     ResponseEntity<SensorDTO> addData(String name, List<DataDTO> datas);
 
     /**
-     * Donne la liste des données relative à un capteur entre deux dates
+     * Donne la liste des données relative à un capteur entre deux dates.
      *
      * @param name le nom du capteur
      * @param from la date de début (pattern yyyy-MM-dd)

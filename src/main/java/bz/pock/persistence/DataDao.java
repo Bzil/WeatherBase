@@ -1,11 +1,11 @@
 package bz.pock.persistence;
 
 import bz.pock.model.Data;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface DataDao extends MongoRepository<Data, Long> {
+public interface DataDao extends CrudRepository<Data, Long> {
     /**
      * Retourne la donnée contenue en base de donnée.
      *

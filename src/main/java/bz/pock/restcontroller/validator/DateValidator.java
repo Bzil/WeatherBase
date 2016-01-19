@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 public class DateValidator implements ConstraintValidator<Date, String> {
 
     /**
-     * The Constant DATE_PATTERN.
+     * The Constant DATE_PATTERN, yyyy-MN-dd.
      */
     private static final Pattern DATE_PATTERN = Pattern.compile("^(\\d{4})-(\\d{2})-(\\d{2})$");
 
@@ -45,7 +45,7 @@ public class DateValidator implements ConstraintValidator<Date, String> {
         if (year <= 1970 || year >= 2037) {
             return false;
         }
-        if (month > 12 || month <= 0) {
+        if (month > 12 || month < 0) {
             return false;
         }
         if ((MONTHS & (1 << month)) == 0) {

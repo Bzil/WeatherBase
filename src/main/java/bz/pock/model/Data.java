@@ -1,17 +1,23 @@
 package bz.pock.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Optional;
 
+@Entity
 public class Data implements Serializable {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Optional<LocalDateTime> date = Optional.empty();
+    private LocalDateTime date;
     private Double value;
+    @ManyToOne
+    private Sensor sensor;
 
     /**
      * Private constructeur, use Builder.
@@ -33,7 +39,7 @@ public class Data implements Serializable {
      *
      * @return Value for property 'date'.
      */
-    public Optional<LocalDateTime> getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
@@ -46,14 +52,13 @@ public class Data implements Serializable {
         return value;
     }
 
-
-    @Override
-    public String toString() {
-        return "Data{" +
-                "id=" + id +
-                ", date=" + date +
-                ", value=" + value +
-                '}';
+    /**
+     * Getter for property 'sensor'.
+     *
+     * @return Value for property 'sensor'.
+     */
+    public Sensor getSensot() {
+        return sensor;
     }
 
     @Override
@@ -73,7 +78,10 @@ public class Data implements Serializable {
         if (date != null ? !date.equals(data.date) : data.date != null) {
             return false;
         }
-        return !(value != null ? !value.equals(data.value) : data.value != null);
+        if (value != null ? !value.equals(data.value) : data.value != null) {
+            return false;
+        }
+        return sensor != null ? sensor.equals(data.sensor) : data.sensor == null;
 
     }
 
@@ -82,7 +90,18 @@ public class Data implements Serializable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + (value != null ? value.hashCode() : 0);
+        result = 31 * result + (sensor != null ? sensor.hashCode() : 0);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Data{" +
+                "id=" + id +
+                ", date=" + date +
+                ", value=" + value +
+                ", sensor=" + sensor.getId() +
+                '}';
     }
 
     /**
@@ -131,7 +150,7 @@ public class Data implements Serializable {
          * @return builder
          */
         public Builder date(LocalDateTime date) {
-            data.date = Optional.ofNullable(date);
+            data.date = date;
             return this;
         }
 
@@ -143,6 +162,17 @@ public class Data implements Serializable {
          */
         public Builder value(Double value) {
             data.value = value;
+            return this;
+        }
+
+        /**
+         * Set sensor to data.
+         *
+         * @param sensor value to set
+         * @return builder
+         */
+        public Builder value(Sensor sensor) {
+            data.sensor = sensor;
             return this;
         }
 

@@ -33,7 +33,7 @@ public class DataDTO {
      * @return dto correspondant
      */
     public static DataDTO to(Data d) {
-        return new DataDTO(d.getId(), d.getDate().map(t -> t.format(FORMATER)).orElse(""), d.getValue());
+        return new DataDTO(d.getId(), d.getDate() != null ? d.getDate().format(FORMATER) : "", d.getValue());
     }
 
     /**
