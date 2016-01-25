@@ -1,5 +1,6 @@
 package bz.pock.restcontroller.impl;
 
+import bz.pock.annotation.Log;
 import bz.pock.model.Sensor;
 import bz.pock.restcontroller.SensorController;
 import bz.pock.restcontroller.dto.DataDTO;
@@ -27,6 +28,7 @@ public class SensorControllerImpl implements SensorController {
     @Autowired
     private SensorService sensorService;
 
+    @Log
     @Override
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     public String ping() {

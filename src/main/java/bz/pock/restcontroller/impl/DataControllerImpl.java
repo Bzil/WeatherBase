@@ -1,5 +1,6 @@
 package bz.pock.restcontroller.impl;
 
+import bz.pock.annotation.Log;
 import bz.pock.model.Data;
 import bz.pock.restcontroller.DataController;
 import bz.pock.restcontroller.dto.DataDTO;
@@ -23,7 +24,7 @@ public class DataControllerImpl implements DataController {
     @Autowired
     private DataService dataService;
 
-
+    @Log
     @Override
     @RequestMapping(value = "/ping", method = RequestMethod.GET)
     public String ping() {
